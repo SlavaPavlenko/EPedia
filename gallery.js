@@ -12,7 +12,7 @@ function showSlides(n){
 }
 function loadSlide(){
     var obj = document.getElementById("gallery_img");
-    obj.src = "../Content/images/"+images[slideIndex];
+    obj.src = images[slideIndex];
     obj.alt = images[slideIndex].slice(0, images[slideIndex].length-4)
     images.forEach((index)=>images[index].style.display = "none");
     images[slideIndex].style.display="block";
