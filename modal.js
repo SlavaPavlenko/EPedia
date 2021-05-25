@@ -4,7 +4,7 @@ function showModal(sourceId){
     var modalImg = document.getElementById("img01");
     var captionText = document.getElementById("caption");
     modal.style.display = "block";
-    modalImg.src = "../Content/images/" + img.alt + ".jpg";
+    modalImg.src = img.alt + ".jpg";
     modalImg.alt = img.alt;
     captionText.innerHTML = img.alt;
 }
