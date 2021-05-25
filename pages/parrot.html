@@ -1,25 +1,4 @@
-﻿@model EPedia.Models.DB.Page
-
-@{
-    //ViewBag.Title = "Home Page";
-    Layout = null;
-}
-
-@using (Html.BeginForm("parrot", "Home", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    foreach (var p in ViewBag.Pages)
-    {
-        if (p.link.ToString() == Request.Url.AbsolutePath.ToString())
-        {
-            <input id="pageID" type="hidden" value="p.Id" name="id" class="hidden_input" />
-        }
-    }
-}
-
-
-
-
+﻿
 
 
 <HTML>
