@@ -1,0 +1,182 @@
+﻿@model EPedia.Models.DB.Page
+
+@{
+    //ViewBag.Title = "Home Page";
+    Layout = null;
+}
+
+@using (Html.BeginForm("parrot", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    foreach (var p in ViewBag.Pages)
+    {
+        if (p.link.ToString() == Request.Url.AbsolutePath.ToString())
+        {
+            <input id="pageID" type="hidden" value="p.Id" name="id" class="hidden_input" />
+        }
+    }
+}
+
+
+
+
+
+
+<HTML>
+
+<head>
+    <title>EPedia - попугай</title>
+    <link rel="stylesheet" href="~/Content/main.css">
+    <link rel="shortcut icon" href="~/Content/~/Content/images/ico.png" type="image/png">
+    <script src="~/Scripts/modal.js"></script>
+    <script src="~/Scripts/scrollToTop.js"></script>
+    <script src="~/Scripts/authorization.js"></script>
+</head>
+
+<body onload="FillBookmarksPlate()">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- The Close Button -->
+        <span class="close" onclick="closeModal()">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01" onclick="goToImagePage()">
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+    </div>
+
+    <div id="header">
+        <div id="logo"><a href="~/Home/index">EPedia</a></div>
+        <div id="media">
+            <a href="~/Home/search"><img src="~/Content/images/search.png"></a>
+            <a href="~/Home/lk"><img src="~/Content/images/lk.png"></a>
+            <a href="https://vk.com/animalplanetrussia" target="_blank"><img src="~/Content/images/vk.png"></a>
+            <a href="https://www.instagram.com/animalplanet/" target="_blank"><img src="~/Content/images/instagram.png"></a>
+            <a href="https://ru-ru.facebook.com/AnimalPlanet" target="_blank"><img src="~/Content/images/facebook.png"></a>
+            <a href="https://www.youtube.com/user/AnimalPlanetTV" target="_blank"><img src="~/Content/images/youtube.png"></a>
+        </div>
+    </div>
+
+    <div class="container" id="content">
+        <div class="container" id="nav">
+            <div class="menu_item">
+                <a href="~/Home/index">Главная</a>
+            </div>
+            <div class="menu_item">
+                <a href="">Звери</a>
+                <ul class="submenu">
+                    <li><a href="~/Home/cat">Кошка</a></li>
+                </ul>
+            </div>
+            <div class="menu_item">
+                <a href="">Птицы</a>
+                <ul class="submenu">
+                    <li><a href="~/Home/parrot">Попугай</a></li>
+                </ul>
+            </div>
+            <div class="menu_item">
+                <a href="">Рыбы</a>
+                <ul class="submenu">
+                    <li><a href="~/Home/error">Подменю</a></li>
+                </ul>
+            </div>
+            <div class="menu_item_right">
+                <a href="">Растения</a>
+                <ul class="submenu">
+                    <li><a href="~/Home/error">Подменю</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <table class="spec">
+            <tr>
+                <td class="separator">Попугай</td>
+            </tr>
+            <tr>
+                <td class="content"><img id="image" src="~/Content/images/попугай.jpg" onclick="showModal('image')" alt="попугай"></td>
+            </tr>
+            <tr>
+                <td class="separator">Научная классификация</td>
+            </tr>
+            <tr>
+                <td>
+                    <ul class="classification">
+                        <li class="content">Домен: Эукариоты</li>
+                        <li class="content">Царство: Животные</li>
+                        <li class="content">Тип: Хордовые</li>
+                        <li class="content">Класс: Птицы</li>
+                        <li class="content">Отряд: Попугаеобразные</li>
+                        <li class="content">Семейство: Попугаевые</li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td class="separator">Внешние ссылки</td>
+            </tr>
+            <tr>
+                <td class="content"><a href="https://ru.wikipedia.org/wiki/%D0%9F%D0%BE%D0%BF%D1%83%D0%B3%D0%B0%D0%B5%D0%B2%D1%8B%D0%B5" target="_blank">Wikipedia</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="bookmarkPlate" onClick="SelectBookmark()">Добавить закладку</div>
+                </td>
+            </tr>
+        </table>
+        <div class="greetings">
+            <h1 class="headline">Попугай</h1>
+            <h2>Общие сведения</h2>
+            <p>
+                &nbsp;&nbsp;&nbsp;
+                Попугаевые (лат. Psittacidae) — семейство птиц отряда попугаеобразных. Включает около 330 видов.
+                В России попугаи впервые появились, вероятно, в 1490 году: посол римского короля Максимилиана Юрий Делатор преподнёс подарки великой княгине Софье Фоминичне «птицу попагал и сукно серо».
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp;
+                Слово попугай впервые в письменных источниках упоминается в Описи имущества Бориса Годунова в 1589 году.
+            </p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h2>Содержание дома</h2>
+            <br>
+            <h3>Обустройство клетки</h3>
+            <p>
+                &nbsp;&nbsp;&nbsp;
+                Разбираясь в вопросе как ухаживать за попугаем правильно, вы поймете, что на пернатом питомце нельзя экономить. Выбирайте для него будущий домик, изготовленный из качественных материалов. Не стоит покупать клетку с покрашенными краской прутьями: пернатые любят ее сгрызать и проглатывать, из-за чего часто случаются отравления.
+                Клетка не должна быть тесной, ее размеры должны давать возможность питомцу свободно расправлять крылья и перепархивать с места на место, не задевая крышу и стенки.
+                Лучшей формой для апартаментов является прямоугольная, так как в круглой клетке птицы часто теряют ориентацию в пространстве.
+            </p>
+            <p>Важными атрибутами каждой клетки являются:</p>
+            <ul>
+                <li>2-3 кормушки для различных видов корма</li>
+                <li>Поилка</li>
+                <li>Жердочки</li>
+                <li>Лесенки, качели, зеркальце, канатики и другие игрушки</li>
+                <li>Минеральные подкормки в виде мела, сепии, минерального камня</li>
+            </ul>
+            <br>
+            <h3>Кормление</h3>
+            <br>
+            <p>
+                &nbsp;&nbsp;&nbsp;
+                Зерно — основа рациона птицы. Его подсыпают в кормушку каждый день небольшими порциями (не более 1 ч. л.). Желательно не ограничиваться одним видом зерен. Смеси из семян можно покупать в зоомагазине или готовить их самостоятельно.
+            </p>
+            <p>В меню должны присутствовать:</p>
+            <ul>
+                <li>Просо</li>
+                <li>Конопляное семя</li>
+                <li>Подсолнечник</li>
+                <li>Кунжут</li>
+                <li>Овес</li>
+                <li>Льняное семя</li>
+            </ul>
+        </div>
+    </div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+    <div class="container" id="footer">
+    </div>
+</body>
+
+</HTML>

@@ -1,0 +1,115 @@
+﻿@model EPedia.Models.DB.Page
+
+<HTML>
+
+<head>
+    <title>EPedia - главная</title>
+    <link rel="stylesheet" href="~/Content/index.css">
+    <link rel="shortcut icon" href="~/Content/images/ico.png" type="image/png">
+    <script src="~/Scripts/gallery.js"></script>
+    <script src="~/Scripts/modal.js"></script>
+    <script src="~/Scripts/scrollToTop.js"></script>
+    <script src="~/Scripts/authorization.js"></script>
+</head>
+
+<body onload="loadSlide()">
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- The Close Button -->
+        <span class="close" onclick="closeModal()">&times;</span>
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01" onclick="goToImagePage()">
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+    </div>
+
+    <div id="header">
+        <div id="logo"><a href="~/Home/index">EPedia</a></div>
+        <div id="media">
+            <a href="~/Home/search"><img src="~/Content/images/search.png"></a>
+            <a href="~/Home/lk"><img src="~/Content/images/lk.png"></a>
+            <a href="https://vk.com/animalplanetrussia" target="_blank"><img src="~/Content/images/vk.png"></a>
+            <a href="https://www.instagram.com/animalplanet/" target="_blank"><img src="~/Content/images/instagram.png"></a>
+            <a href="https://ru-ru.facebook.com/AnimalPlanet" target="_blank"><img src="~/Content/images/facebook.png"></a>
+            <a href="https://www.youtube.com/user/AnimalPlanetTV" target="_blank"><img src="~/Content/images/youtube.png"></a>
+        </div>
+    </div>
+    <div class="container" id="content">
+        <div class="container" id="nav">
+            <div class="menu_item">
+                <a href="~/Home/index">Главная</a>
+            </div>
+            <div class="menu_item">
+                <a href="">Звери</a>
+                <ul class="submenu">
+                    <li><a href="~/Home/cat">Кошка</a></li>
+                </ul>
+            </div>
+            <div class="menu_item">
+                <a href="">Птицы</a>
+                <ul class="submenu">
+                    <li><a href="~/Home/parrot">Попугай</a></li>
+                </ul>
+            </div>
+            <div class="menu_item">
+                <a href="">Рыбы</a>
+                <ul class="submenu">
+                    <li><a href="~/Home/error">Подменю</a></li>
+                </ul>
+            </div>
+            <div class="menu_item_right">
+                <a href="">Растения</a>
+                <ul class="submenu">
+                    <li><a href="~/Home/error">Подменю</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <div class="headline">
+                <h1>Электронная энциклопедия</h1>
+            </div>
+            <div class="gallery">
+                <img id="gallery_img" class="myImg" border="0" alt="" onclick="showModal('gallery_img')">
+                <div id="left" onclick="showSlides(slideIndex-=1)" class="gallery_arrows">
+                    <img src="~/Content/images/left_arrow.png" alt="">
+                </div>
+                <div id="right" onclick="showSlides(slideIndex+=1)" class="gallery_arrows">
+                    <img src="~/Content/images/right_arrow.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="greetings">
+            <p>
+                &nbsp;&nbsp;&nbsp;
+                <b>Энциклопедия</b> - приведённое в систему обозрение всех отраслей человеческого знания или круга дисциплин, в совокупности составляющих отдельную отрасль знания.
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp;
+                EPedia - это электронная энциклопедия, доступная каждому пользователю Интернета. Здесь Вы сможете найти различную информацию как об известных и распространенных живых существах, так и о тех, кто в силу различных причин специфичен для обывателя. На каждой странице Вы сможете увидеть научную классификацию, внешние ссылки, общие и специальные сведения для каждого экземпляра.
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp;На сайте также имеется возможность перейти на страницы схожей тематики в VK, Instagram, Facebook и YouTube.
+            </p>
+        </div>
+        <div class="wrapper" id="top3">
+            <div class="top3_header">Страница дня</div>
+            <div class="top3_img" id="topPage">
+                <img id="top1_img" src="~/Content/images/@Model.img" onclick="showModal('top1_img')" alt="@Model.name">
+                <div class="top3_name">@Model.name</div>
+            </div>
+        </div>
+        <div class="top3_name">
+            @Ajax.ActionLink("Выбрать другую", "randomPage", new AjaxOptions { UpdateTargetId = "topPage" })
+        </div>
+
+    </div>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+    <div class="container" id="footer">
+    </div>
+</body>
+
+</HTML>
